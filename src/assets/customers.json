@@ -1,0 +1,65 @@
+[
+  {
+    "customer_id": 1,
+    "customer_name": "varun",
+    "amount_receivable": 100,
+    "invoices": [{
+      "customer_id": 1,
+      "invoice_no": 1,
+      "date": "20/11/2022",
+      "invoice_amount": 20,
+      "actual_due": 20,
+      "amount_received": 0,
+      "balance": 20,
+      "payment_status": "not_done"
+    },
+    {
+      "customer_id": 1,
+      "invoice_no": 2,
+      "date": "22/12/2022",
+      "invoice_amount": 140,
+      "actual_due": 40,
+      "amount_received": 0,
+      "balance": 40,
+      "payment_status": "partially_done"
+    },
+    {
+      "customer_id": 1,
+      "invoice_no": 3,
+      "date": "19/09/2022",
+      "invoice_amount": 180,
+      "actual_due": 20,
+      "amount_received": 0,
+      "balance": 20,
+      "payment_status": "partially_done"
+    },
+    {
+      "customer_id": 1,
+      "invoice_no": 4,
+      "date": "20/11/2022",
+      "invoice_amount": 20,
+      "actual_due": 20,
+      "amount_received": 0,
+      "balance": 20,
+      "payment_status": "not_done"
+    }]
+  },
+
+  {
+    "customer_id": 2,
+    "customer_name": "suraj",
+    "amount_receivable": 500
+  },
+
+  {
+    "customer_id": 3,
+    "customer_name": "priti",
+    "amount_receivable": 400
+  },
+
+  {
+    "customer_id": 4,
+    "customer_name": "indu",
+    "amount_receivable": 20
+  }
+]

@@ -1,0 +1,92 @@
+<div class="main-div">
+  <h3>details fill</h3>
+
+  <p>{{ CustId?.customer_name }}</p>
+
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="amount_receivable"> Amount Receivable </label>
+      <input
+        id="amount_receivable"
+        type="number"
+        value="{{ CustId?.amount_receivable }}"
+        formControlName="amount_receivable"
+        readonly
+      />
+    </div>
+
+    <div>
+      <label for="received_date"> Received Date </label>
+      <input id="received_date" type="date" formControlName="received_date" />
+    </div>
+
+    <div>
+      <label for="amount_received"> Amount Received </label>
+      <input
+        id="amount_received"
+        type="number"
+        formControlName="amount_received"
+      />
+    </div>
+
+    <div>
+      <label for="receipt_no"> Receipt No </label>
+      <input id="receipt_no" type="number" formControlName="amount_received" />
+    </div>
+
+    <label for="mode_of_payment">Mode of Payment</label>
+
+    <select id="mode_of_payment">
+      <option value="upi">UPI</option>
+      <option value="bank_transfer">Bank Transfer</option>
+      <option value="cheque">Cheque</option>
+    </select>
+
+    <div>
+      <label for="transaction_id"> Payment Transaction ID </label>
+      <input
+        id="transaction_id"
+        type="number"
+        formControlName="transaction_id"
+      />
+    </div>
+
+    <label for="deposit_to">Deposit To</label>
+
+    <select id="deposit_to">
+      <option value="american_bank">American Bank</option>
+      <option value="hsbc">HSBC</option>
+      <option value="shanghai_bank">Shanghai Bank</option>
+      <option value="british_finance_bank">British Finance Bank</option>
+    </select>
+
+    <button class="button" type="submit">Purchase</button>
+  </form>
+
+  <p>{{ stringPrint() }}</p>
+
+  <!-- <table class="table table-striped">  
+    <thead>  
+        <tr>  
+          <th>invoice no</th>  
+          <th>date</th>  
+          <th>invoice amount</th>  
+          <th>actual due</th>  
+          <th>actual received</th>  
+          <th>actual due</th>  
+          <th>balance</th>  
+        </tr>  
+    </thead>  
+    <tbody>  
+      <tr *ngFor="let user of CustId?">  
+        <td>{{ user.invoice.invoice_no }}</td>  
+        <td>{{ user.invoice.date }}</td>  
+        <td>{{ user.invoice.invoice_amount }}</td>  
+        <td>{{ user.invoice.actual_due }}</td>  
+        <td>{{ user.invoice.amount_received }}</td>  
+        <td>NaN</td>  
+        <td>{{ user.invoice.balance }}</td>  
+      </tr>  
+    </tbody>  
+  </table>   -->
+</div>

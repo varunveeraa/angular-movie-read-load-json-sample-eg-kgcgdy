@@ -1,0 +1,182 @@
+{
+  "1": [
+    {
+      "customer_id": 1,
+      "invoice_no": 1,
+      "date": "20/11/2022",
+      "invoice_amount": 20,
+      "actual_due": 20,
+      "amount_received": 0,
+      "balance": 20,
+      "payment_status": "not_done"
+    },
+    {
+      "customer_id": 1,
+      "invoice_no": 2,
+      "date": "22/12/2022",
+      "invoice_amount": 140,
+      "actual_due": 40,
+      "amount_received": 0,
+      "balance": 40,
+      "payment_status": "partially_done"
+    },
+    {
+      "customer_id": 1,
+      "invoice_no": 3,
+      "date": "19/09/2022",
+      "invoice_amount": 180,
+      "actual_due": 20,
+      "amount_received": 0,
+      "balance": 20,
+      "payment_status": "partially_done"
+    },
+    {
+      "customer_id": 1,
+      "invoice_no": 4,
+      "date": "20/11/2022",
+      "invoice_amount": 20,
+      "actual_due": 20,
+      "amount_received": 0,
+      "balance": 20,
+      "payment_status": "not_done"
+    }
+  ],
+  "2": [
+    {
+      "customer_id": 2,
+      "invoice_no": 5,
+      "date": "05/05/2021",
+      "invoice_amount": 1000,
+      "actual_due": 200,
+      "amount_received": 0,
+      "balance": 200,
+      "payment_status": "partially_done"
+    },
+    {
+      "customer_id": 2,
+      "invoice_no": 6,
+      "date": "15/06/2022",
+      "invoice_amount": 100,
+      "actual_due": 100,
+      "amount_received": 0,
+      "balance": 100,
+      "payment_status": "not_done"
+    },
+    {
+      "customer_id": 2,
+      "invoice_no": 7,
+      "date": "23/03/2022",
+      "invoice_amount": 50,
+      "actual_due": 50,
+      "amount_received": 0,
+      "balance": 50,
+      "payment_status": "not_done"
+    },
+    {
+      "customer_id": 2,
+      "invoice_no": 8,
+      "date": "03/08/2022",
+      "invoice_amount": 30,
+      "actual_due": 30,
+      "amount_received": 0,
+      "balance": 30,
+      "payment_status": "not_done"
+    },
+    {
+      "customer_id": 2,
+      "invoice_no": 9,
+      "date": "17/12/2021",
+      "invoice_amount": 20,
+      "actual_due": 20,
+      "amount_received": 0,
+      "balance": 20,
+      "payment_status": "not_done"
+    },
+    {
+      "customer_id": 2,
+      "invoice_no": 10,
+      "date": "19/06/2022",
+      "invoice_amount": 450,
+      "actual_due": 30,
+      "amount_received": 0,
+      "balance": 30,
+      "payment_status": "partially_done"
+    },
+    {
+      "customer_id": 2,
+      "invoice_no": 11,
+      "date": "20/11/2022",
+      "invoice_amount": 350,
+      "actual_due": 70,
+      "amount_received": 0,
+      "balance": 70,
+      "payment_status": "partially_done"
+    }
+  ],
+
+  "3": [
+    {
+      "customer_id": 3,
+      "invoice_no": 12,
+      "date": "09/11/2021",
+      "invoice_amount": 90,
+      "actual_due": 90,
+      "amount_received": 0,
+      "balance": 90,
+      "payment_status": "not_done"
+    },
+    {
+      "customer_id": 3,
+      "invoice_no": 13,
+      "date": "30/01/2021",
+      "invoice_amount": 120,
+      "actual_due": 100,
+      "amount_received": 0,
+      "balance": 100,
+      "payment_status": "partially_done"
+    },
+    {
+      "customer_id": 3,
+      "invoice_no": 14,
+      "date": "01/05/2021",
+      "invoice_amount": 120,
+      "actual_due": 10,
+      "amount_received": 0,
+      "balance": 10,
+      "payment_status": "partially_done"
+    },
+    {
+      "customer_id": 3,
+      "invoice_no": 15,
+      "date": "19/04/2022",
+      "invoice_amount": 200,
+      "actual_due": 200,
+      "amount_received": 0,
+      "balance": 200,
+      "payment_status": "not_done"
+    }
+  ],
+
+  "4": [
+    {
+      "customer_id": 4,
+      "invoice_no": 16,
+      "date": "12/07/2021",
+      "invoice_amount": 20,
+      "actual_due": 10,
+      "amount_received": 0,
+      "balance": 10,
+      "payment_status": "partially_done"
+    },
+    {
+      "customer_id": 4,
+      "invoice_no": 17,
+      "date": "11/02/2022",
+      "invoice_amount": 10,
+      "actual_due": 10,
+      "amount_received": 0,
+      "balance": 10,
+      "payment_status": "not_done"
+    }
+  ]
+}
