@@ -68,12 +68,14 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th></th>
         <th>invoice no</th>
         <th>date</th>
         <th>invoice amount</th>
         <th>actual due</th>
         <th>amount received</th>
         <th>balance</th>
+        <th>status</th>
       </tr>
     </thead>
     <tbody>
@@ -83,6 +85,7 @@
           let i = index
         "
       >
+        <td><input type="checkbox" /></td>
         <td>{{ CustId.invoices[i].invoice_no }}</td>
         <td>{{ CustId.invoices[i].date }}</td>
         <td>{{ CustId.invoices[i].invoice_amount }}</td>
@@ -90,14 +93,17 @@
         <td>
           <input
             type="number"
-            [(ngModel)]="inputVal"
-            onkeydown="updateBalance(inputVal, i)"
+            [(ngModel)]="CustId.invoices[i].amount_received"
+            (change)="changeBal(i)"
           />
         </td>
-        <td>{{ CustId.invoices[i].balance }}</td>
+        <td>
+          <p>{{ CustId.invoices[i].balance }}</p>
+        </td>
+        <td>{{ CustId.invoices[i].payment_status }}</td>
       </tr>
     </tbody>
   </table>
 
-  <!-- <p>{{  }}</p> -->
+  <p>total due:</p>
 </div>
