@@ -18,8 +18,9 @@ export class DisplayComponent implements OnInit {
     })
   }
 
-  stringPrint() {
-    return(JSON.stringify(this.CustId.invoice))
+  updateBalance(val, index){
+    console.log(val, index)
   }
+
 
 }

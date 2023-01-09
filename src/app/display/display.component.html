@@ -1,7 +1,7 @@
 <div class="main-div">
   <h3>details fill</h3>
 
-  <p>{{ CustId?.customer_name }}</p>
+  <p>{{ CustId.customer_name }}</p>
 
   <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
     <div>
@@ -9,7 +9,7 @@
       <input
         id="amount_receivable"
         type="number"
-        value="{{ CustId?.amount_receivable }}"
+        value="{{ CustId.amount_receivable }}"
         formControlName="amount_receivable"
         readonly
       />
@@ -63,30 +63,41 @@
     <button class="button" type="submit">Purchase</button>
   </form>
 
-  <p>{{ stringPrint() }}</p>
+  <!-- <p>{{ CustId.invoice }}</p> -->
 
-  <!-- <table class="table table-striped">  
-    <thead>  
-        <tr>  
-          <th>invoice no</th>  
-          <th>date</th>  
-          <th>invoice amount</th>  
-          <th>actual due</th>  
-          <th>actual received</th>  
-          <th>actual due</th>  
-          <th>balance</th>  
-        </tr>  
-    </thead>  
-    <tbody>  
-      <tr *ngFor="let user of CustId?">  
-        <td>{{ user.invoice.invoice_no }}</td>  
-        <td>{{ user.invoice.date }}</td>  
-        <td>{{ user.invoice.invoice_amount }}</td>  
-        <td>{{ user.invoice.actual_due }}</td>  
-        <td>{{ user.invoice.amount_received }}</td>  
-        <td>NaN</td>  
-        <td>{{ user.invoice.balance }}</td>  
-      </tr>  
-    </tbody>  
-  </table>   -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>invoice no</th>
+        <th>date</th>
+        <th>invoice amount</th>
+        <th>actual due</th>
+        <th>amount received</th>
+        <th>balance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let item of [].constructor(CustId.invoices.length);
+          let i = index
+        "
+      >
+        <td>{{ CustId.invoices[i].invoice_no }}</td>
+        <td>{{ CustId.invoices[i].date }}</td>
+        <td>{{ CustId.invoices[i].invoice_amount }}</td>
+        <td>{{ CustId.invoices[i].actual_due }}</td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="inputVal"
+            onkeydown="updateBalance(inputVal, i)"
+          />
+        </td>
+        <td>{{ CustId.invoices[i].balance }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <p>{{  }}</p> -->
 </div>
