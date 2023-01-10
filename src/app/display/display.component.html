@@ -3,35 +3,36 @@
 
   <p>{{ CustId.customer_name }}</p>
 
-  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+  <form #FormName="ngForm">
     <div>
       <label for="amount_receivable"> Amount Receivable </label>
       <input
         id="amount_receivable"
         type="number"
         value="{{ CustId.amount_receivable }}"
-        formControlName="amount_receivable"
         readonly
       />
     </div>
 
     <div>
       <label for="received_date"> Received Date </label>
-      <input id="received_date" type="date" formControlName="received_date" />
+      <input id="received_date" type="date" />
     </div>
 
     <div>
       <label for="amount_received"> Amount Received </label>
       <input
+        [(ngModel)]="amountReceived"
         id="amount_received"
         type="number"
-        formControlName="amount_received"
+        name="amount_received"
+        (change)="checkAmt()"
       />
     </div>
 
     <div>
       <label for="receipt_no"> Receipt No </label>
-      <input id="receipt_no" type="number" formControlName="amount_received" />
+      <input id="receipt_no" type="number" />
     </div>
 
     <label for="mode_of_payment">Mode of Payment</label>
@@ -44,11 +45,7 @@
 
     <div>
       <label for="transaction_id"> Payment Transaction ID </label>
-      <input
-        id="transaction_id"
-        type="number"
-        formControlName="transaction_id"
-      />
+      <input id="transaction_id" type="number" />
     </div>
 
     <label for="deposit_to">Deposit To</label>
@@ -59,8 +56,8 @@
       <option value="shanghai_bank">Shanghai Bank</option>
       <option value="british_finance_bank">British Finance Bank</option>
     </select>
-
-    <button class="button" type="submit">Purchase</button>
+    <!-- 
+    <button class="button" type="submit">Purchase</button> -->
   </form>
 
   <!-- <p>{{ CustId.invoice }}</p> -->
@@ -105,5 +102,9 @@
     </tbody>
   </table>
 
-  <p>total due:</p>
+  <p>amount received: {{ amountReceived }}</p>
+  <p>amount applicable: {{ CustId.amount_receivable }}</p>
+  <p>amount applied: {{ findSum(false) }}</p>
+  <p>total due pending: {{ findSum(true) }}</p>
+  <p>credits: {{ CustId.credits }}</p>
 </div>

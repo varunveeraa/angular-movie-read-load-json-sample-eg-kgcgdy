@@ -3,6 +3,7 @@
     "customer_id": 1,
     "customer_name": "varun",
     "amount_receivable": 100,
+    "credits": 50,
     "invoices": [
       {
         "customer_id": 1,
