@@ -29,6 +29,10 @@ export class DisplayComponent implements OnInit {
     ) {
       alert('enter valid amount');
       this.CustId.invoices[i].amount_received = 0;
+    } else if (this.amountReceived === 0) {
+      alert('enter amount received');
+      this.CustId.invoices[i].amount_received = 0;
+
     } else {
       this.CustId.invoices[i].balance -=
         this.CustId.invoices[i].amount_received;
@@ -38,7 +42,7 @@ export class DisplayComponent implements OnInit {
         this.CustId.invoices[i].balance > 0 &&
         this.CustId.invoices[i].balance != 0
       ) {
-        this.CustId.invoices[i].payment_status = 'partially completed';
+        this.CustId.invoices[i].payment_status = 'partially complete';
       }
     }
   }

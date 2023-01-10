@@ -11,11 +11,16 @@ import { MaterialsModule } from './material';
 import { ListComponent } from './list/list.component';
 import { DisplayComponent } from './display/display.component';
 
-
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, HttpClientModule,MaterialsModule,BrowserAnimationsModule ],
-  declarations: [ AppComponent, HelloComponent, ListComponent, DisplayComponent ],
-  bootstrap:    [ AppComponent ],
-  providers: [ContactService]
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MaterialsModule,
+    BrowserAnimationsModule,
+  ],
+  declarations: [AppComponent, HelloComponent, ListComponent, DisplayComponent],
+  bootstrap: [AppComponent],
+  providers: [ContactService],
 })
-export class AppModule { }
+export class AppModule {}

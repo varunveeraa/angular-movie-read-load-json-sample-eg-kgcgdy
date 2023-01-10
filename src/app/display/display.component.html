@@ -65,7 +65,7 @@
   <br>
   <br>
 
-  <input [(ngModel)]="searchInvoice" placeholder="search here">
+  <!-- <input [(ngModel)]="searchInvoice" placeholder="search here"> -->
 
   <table class="table table-striped">
     <thead>
@@ -84,7 +84,8 @@
       <tr
         *ngFor="
           let item of [].constructor(CustId.invoices.length);
-          let i = index | filter:searchInvoice"
+          let i = index
+        "
       >
         <td>
           <input
