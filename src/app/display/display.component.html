@@ -35,9 +35,23 @@
       <input
         id="receipt_no"
         type="number"
-        value="{{ CustId.invoices.length + 209}}"
+        value="{{ CustId.invoices.length + 209 }}"
         readonly
       />
+    </div>
+
+    <div>
+      <label for="receipt_no"> Include Credits? </label>
+
+      <button (click)="toggleDisplayDivIf()">✔️</button>
+      <div *ngIf="!isShowDivIf">
+        <input
+          [(ngModel)]="credVal"
+          (change)="updateCredApply()"
+          name="updateCred"
+          type="number"
+        />
+      </div>
     </div>
 
     <label for="mode_of_payment">Mode of Payment</label>
@@ -117,9 +131,10 @@
     </tbody>
   </table>
 
-  <p>amount received: {{ amountReceived }}</p>
+  <p>amount received: {{ totalRcvdAmt }}</p>
   <p>amount applicable: {{ CustId.amount_receivable }}</p>
   <p>amount applied: {{ findSum(false) }}</p>
   <p>total due pending: {{ findSum(true) }}</p>
   <p>credits: {{ CustId.credits }}</p>
+  <p>credit redeem: {{ credVal }}</p>
 </div>

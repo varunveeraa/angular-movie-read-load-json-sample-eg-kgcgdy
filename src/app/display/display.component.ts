@@ -13,7 +13,14 @@ export class DisplayComponent implements OnInit {
 
   searchInvoice: string;
 
+  totalRcvdAmt: number;
+
   CustId: any;
+
+  isShowDivIf = false;
+
+  credVal: number = 0;
+
   constructor(private myService: ContactService) {}
 
   public async ngOnInit(): Promise<void> {
@@ -22,8 +29,12 @@ export class DisplayComponent implements OnInit {
     });
   }
 
-  randomNumGen() {
-    return Math.floor(Math.random() * 10);
+  toggleDisplayDivIf() {
+    this.isShowDivIf = !this.isShowDivIf;
+  }
+
+  updateCredApply() {
+    this.totalRcvdAmt = this.credVal + this.amountReceived;
   }
 
   changeBal(i) {
