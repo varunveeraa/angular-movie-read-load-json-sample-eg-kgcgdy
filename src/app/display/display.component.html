@@ -61,6 +61,11 @@
   </form>
 
   <!-- <p>{{ CustId.invoice }}</p> -->
+  <br>
+  <br>
+  <br>
+
+  <input [(ngModel)]="searchInvoice" placeholder="search here">
 
   <table class="table table-striped">
     <thead>
@@ -79,10 +84,14 @@
       <tr
         *ngFor="
           let item of [].constructor(CustId.invoices.length);
-          let i = index
-        "
+          let i = index | filter:searchInvoice"
       >
-        <td><input type="checkbox" /></td>
+        <td>
+          <input
+            type="checkbox"
+            [checked]="CustId.invoices[i].amount_received != 0"
+          />
+        </td>
         <td>{{ CustId.invoices[i].invoice_no }}</td>
         <td>{{ CustId.invoices[i].date }}</td>
         <td>{{ CustId.invoices[i].invoice_amount }}</td>

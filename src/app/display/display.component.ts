@@ -11,6 +11,8 @@ export class DisplayComponent implements OnInit {
 
   amountReceived: number = 0;
 
+  searchInvoice: string;
+
   CustId: any;
   constructor(private myService: ContactService) {}
 
@@ -21,9 +23,23 @@ export class DisplayComponent implements OnInit {
   }
 
   changeBal(i) {
-    this.CustId.invoices[i].balance -= this.CustId.invoices[i].amount_received;
-    if (this.CustId.invoices[i].balance === 0) {
-      this.CustId.invoices[i].payment_status == 'complete';
+    if (
+      this.CustId.invoices[i].amount_received >
+      this.CustId.invoices[i].actual_due
+    ) {
+      alert('enter valid amount');
+      this.CustId.invoices[i].amount_received = 0;
+    } else {
+      this.CustId.invoices[i].balance -=
+        this.CustId.invoices[i].amount_received;
+      if (this.CustId.invoices[i].balance === 0) {
+        this.CustId.invoices[i].payment_status = 'complete';
+      } else if (
+        this.CustId.invoices[i].balance > 0 &&
+        this.CustId.invoices[i].balance != 0
+      ) {
+        this.CustId.invoices[i].payment_status = 'partially completed';
+      }
     }
   }
 
@@ -44,7 +60,8 @@ export class DisplayComponent implements OnInit {
 
   checkAmt() {
     if (this.amountReceived > this.CustId.amount_receivable) {
-      this.CustId.credits+=(this.amountReceived - this.CustId.amount_receivable)
+      this.CustId.credits +=
+        this.amountReceived - this.CustId.amount_receivable;
     }
   }
 }
