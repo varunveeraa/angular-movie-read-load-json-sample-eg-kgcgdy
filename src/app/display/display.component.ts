@@ -22,6 +22,10 @@ export class DisplayComponent implements OnInit {
     });
   }
 
+  randomNumGen() {
+    return Math.floor(Math.random() * 10);
+  }
+
   changeBal(i) {
     if (
       this.CustId.invoices[i].amount_received >
@@ -32,7 +36,6 @@ export class DisplayComponent implements OnInit {
     } else if (this.amountReceived === 0) {
       alert('enter amount received');
       this.CustId.invoices[i].amount_received = 0;
-
     } else {
       this.CustId.invoices[i].balance -=
         this.CustId.invoices[i].amount_received;

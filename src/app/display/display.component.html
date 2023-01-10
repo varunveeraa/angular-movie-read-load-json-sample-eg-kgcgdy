@@ -32,7 +32,12 @@
 
     <div>
       <label for="receipt_no"> Receipt No </label>
-      <input id="receipt_no" type="number" />
+      <input
+        id="receipt_no"
+        type="number"
+        value="{{  randomNumGen() }}"
+        readonly
+      />
     </div>
 
     <label for="mode_of_payment">Mode of Payment</label>
@@ -61,9 +66,9 @@
   </form>
 
   <!-- <p>{{ CustId.invoice }}</p> -->
-  <br>
-  <br>
-  <br>
+  <br />
+  <br />
+  <br />
 
   <!-- <input [(ngModel)]="searchInvoice" placeholder="search here"> -->
 

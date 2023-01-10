@@ -52,6 +52,7 @@
     "customer_id": 2,
     "customer_name": "suraj",
     "amount_receivable": 500,
+    "credits": 0,
     "invoices": [
       {
         "customer_id": 2,
@@ -130,6 +131,7 @@
     "customer_id": 3,
     "customer_name": "priti",
     "amount_receivable": 400,
+    "credits": 75,
     "invoices": [
       {
         "customer_id": 3,
@@ -178,6 +180,7 @@
     "customer_id": 4,
     "customer_name": "indu",
     "amount_receivable": 20,
+    "credits": 100,
     "invoices": [
       {
         "customer_id": 4,
