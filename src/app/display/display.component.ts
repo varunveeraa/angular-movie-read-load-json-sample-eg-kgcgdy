@@ -17,6 +17,8 @@ export class DisplayComponent implements OnInit {
 
   CustId: any;
 
+  CustIdc: any;
+
   isShowDivIf = false;
 
   credVal: number = 0;
@@ -27,6 +29,15 @@ export class DisplayComponent implements OnInit {
     this.myService.onCustomerSelect.subscribe((value) => {
       this.CustId = value;
     });
+    this.CustIdc = { ...this.CustId };
+  }
+
+  lilnigga() {
+    let nigga = false;
+
+    if (nigga == false) {
+      alert(this.CustIdc);
+    }
   }
 
   toggleDisplayDivIf() {
@@ -46,6 +57,9 @@ export class DisplayComponent implements OnInit {
       this.CustId.invoices[i].amount_received = 0;
     } else if (this.amountReceived === 0) {
       alert('enter amount received');
+      this.CustId.invoices[i].amount_received = 0;
+    } else if (this.findSum(false) > this.CustId.invoices[i].amount_received) {
+      alert('insufficent funds');
       this.CustId.invoices[i].amount_received = 0;
     } else {
       this.CustId.invoices[i].balance -=
