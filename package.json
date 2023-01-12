@@ -13,7 +13,9 @@
     "@angular/platform-browser": "7.2.0",
     "@angular/platform-browser-dynamic": "7.2.0",
     "@angular/router": "7.2.0",
+    "@types/lodash": "^4.14.191",
     "core-js": "2.6.1",
+    "lodash": "^4.17.21",
     "material": "0.3.0",
     "rxjs": "6.3.3",
     "zone.js": "0.8.26"

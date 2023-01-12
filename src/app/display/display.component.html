@@ -102,41 +102,42 @@
     <tbody>
       <tr
         *ngFor="
-          let item of [].constructor(CustId.invoices.length);
+          let item of [].constructor(CustIdc.invoices.length);
           let i = index
         "
       >
         <td>
           <input
             type="checkbox"
-            [checked]="CustId.invoices[i].amount_received != 0"
+            [checked]="CustIdc.invoices[i].amount_received != 0"
           />
         </td>
-        <td>{{ CustId.invoices[i].invoice_no }}</td>
-        <td>{{ CustId.invoices[i].date }}</td>
-        <td>{{ CustId.invoices[i].invoice_amount }}</td>
-        <td>{{ CustId.invoices[i].actual_due }}</td>
+        <td>{{ CustIdc.invoices[i].invoice_no }}</td>
+        <td>{{ CustIdc.invoices[i].date }}</td>
+        <td>{{ CustIdc.invoices[i].invoice_amount }}</td>
+        <td>{{ CustIdc.invoices[i].actual_due }}</td>
         <td>
           <input
             type="number"
-            [(ngModel)]="CustId.invoices[i].amount_received"
+            [(ngModel)]="CustIdc.invoices[i].amount_received"
             (change)="changeBal(i)"
           />
         </td>
         <td>
-          <p>{{ CustId.invoices[i].balance }}</p>
+          <p>{{ CustIdc.invoices[i].balance }}</p>
         </td>
-        <td>{{ CustId.invoices[i].payment_status }}</td>
+        <td>{{ CustIdc.invoices[i].payment_status }}</td>
       </tr>
     </tbody>
   </table>
 
   <p>amount received: {{ totalRcvdAmt }}</p>
-  <p>amount applicable: {{ CustId.amount_receivable }}</p>
+  <p>amount applicable: {{ CustIdc.amount_receivable }}</p>
   <p>amount applied: {{ findSum(false) }}</p>
   <p>total due pending: {{ findSum(true) }}</p>
-  <p>credits: {{ CustId.credits }}</p>
+  <p>credits: {{ CustIdc.credits }}</p>
   <p>credit redeem: {{ credVal }}</p>
-
-  <button (click)="lilnigga()">check</button>
+  <p>{{ CustIdc.invoices[1].amount_received }}</p>
+  <p>{{ CustId.invoices[1].amount_received }}</p>
+  <button (click)="saveData()"></button>
 </div>
