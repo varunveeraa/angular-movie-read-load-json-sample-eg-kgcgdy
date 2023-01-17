@@ -32,6 +32,8 @@ export class DisplayComponent implements OnInit {
 
   showContent: any;
 
+  isShowDiv = false;  
+
   constructor(private myService: ContactService) {}
 
   ///////////////////////////////////////////////////////////////////////
@@ -56,6 +58,10 @@ export class DisplayComponent implements OnInit {
   toggleDisplayDivIf() {
     this.isShowDivIf = !this.isShowDivIf;
   }
+
+  toggleDisplayDiv() {  
+    this.isShowDiv = !this.isShowDiv;  
+  }  
 
   ///////////////////////////////////////////////////////////////////////
 

@@ -100,7 +100,7 @@
 
   <!-- <input [(ngModel)]="searchInvoice" placeholder="search here"> -->
 
-  <table class="table table-striped">
+  <table class="table table-striped" >
     <thead>
       <tr>
         <th></th>
@@ -156,4 +156,5 @@
   <button (click)="saveData()">Save</button>
 </div>
 
-<app-show-data></app-show-data>
+<button (click)="toggleDisplayDiv()">Toggle display Div</button>
+<app-show-data [hidden]="isShowDiv"></app-show-data>

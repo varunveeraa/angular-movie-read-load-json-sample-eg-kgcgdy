@@ -62,9 +62,9 @@
             "date": "20/11/2022",
             "invoice_amount": 200,
             "actual_due": 200,
-            "amount_received": 0,
-            "balance": 200,
-            "payment_status": "incomplete"
+            "amount_received": 200,
+            "balance": 0,
+            "payment_status": "complete"
           }
         ]
       }

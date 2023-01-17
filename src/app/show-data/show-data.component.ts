@@ -18,5 +18,5 @@ export class ShowDataComponent implements OnInit {
       this.CustId = value;
     });
   }
-
+  
 }
