@@ -42,7 +42,9 @@
             <tbody>
               <tr
                 *ngFor="
-                  let item1 of [].constructor(CustId.receipts.length);
+                  let item1 of [].constructor(
+                    CustId.receipts[i].invoices.length
+                  );
                   let j = index
                 "
               >
