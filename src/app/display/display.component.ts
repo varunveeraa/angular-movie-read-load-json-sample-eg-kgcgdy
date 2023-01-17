@@ -9,6 +9,11 @@ import * as cloneDeep from 'lodash';
   styleUrls: ['./display.component.css'],
 })
 export class DisplayComponent implements OnInit {
+  received_date: any;
+  mode_of_payment: any;
+  deposit_to: string;
+  transaction_id: number;
+
   public contacts: any;
 
   amountReceived: number = 0;
@@ -117,8 +122,39 @@ export class DisplayComponent implements OnInit {
 
   ///////////////////////////////////////////////////////////////////////
 
+  getChecked() {
+    let obj = [];
+    for (let i = 0; i < this.CustIdc.invoices.length; i++) {
+      if (this.CustIdc.invoices[i].amount_received != 0) {
+        obj.push({
+          invoice_no: this.CustIdc.invoices[i].invoice_no,
+          invoice_date: this.CustIdc.invoices[i].date,
+          invoice_amount: this.CustIdc.invoices[i].invoice_amount,
+          actual_due: this.CustIdc.invoices[i].actual_due,
+          amount_received: this.CustIdc.invoices[i].amount_received,
+          balance: this.CustIdc.invoices[i].balance,
+          payment_status: this.CustIdc.invoices[i].payment_status,
+        });
+      }
+    }
+    return obj;
+  }
+
+  ///////////////////////////////////////////////////////////////////////
+
   saveData() {
     this.CustId = { ...this.CustIdc };
-    console.log(this.CustId);
+    let arr = {
+      receipt_no: this.CustId.invoices.length + 209,
+      amount_received: this.amountReceived,
+      mode_of_payment: this.mode_of_payment,
+      transaction_id: this.transaction_id,
+      deposit_to: this.deposit_to,
+      credit_redeemed: this.credVal,
+      due_pending: this.findSum(true),
+      invoices: this.getChecked(),
+    };
+    this.CustId.receipts.push(arr);
+    console.log(this.CustId.receipts);
   }
 }

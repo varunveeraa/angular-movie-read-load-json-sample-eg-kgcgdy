@@ -45,6 +45,29 @@
         "balance": 20,
         "payment_status": "incomplete"
       }
+    ],
+    "receipts": [
+      {
+        "receipt_no": 45454,
+        "amount_received": 100,
+        "mode_of_payment": "UPI",
+        "transaction_id": 12345,
+        "deposit_to": "icici",
+        "credit_redeemed": 120,
+        "due_pending": 0,
+        "invoices": [
+          {
+            "customer_id": 10,
+            "invoice_no": 40,
+            "date": "20/11/2022",
+            "invoice_amount": 200,
+            "actual_due": 200,
+            "amount_received": 0,
+            "balance": 200,
+            "payment_status": "incomplete"
+          }
+        ]
+      }
     ]
   },
 

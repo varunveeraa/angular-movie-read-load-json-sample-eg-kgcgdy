@@ -10,6 +10,7 @@ import { ContactService } from './contacts.service';
 import { MaterialsModule } from './material';
 import { ListComponent } from './list/list.component';
 import { DisplayComponent } from './display/display.component';
+import { ShowDataComponent } from './show-data/show-data.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,13 @@ import { DisplayComponent } from './display/display.component';
     MaterialsModule,
     BrowserAnimationsModule,
   ],
-  declarations: [AppComponent, HelloComponent, ListComponent, DisplayComponent],
+  declarations: [
+    AppComponent,
+    HelloComponent,
+    ListComponent,
+    DisplayComponent,
+    ShowDataComponent,
+  ],
   bootstrap: [AppComponent],
   providers: [ContactService],
 })

@@ -1,0 +1,63 @@
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>receipt_no</th>
+        <th>amount_received</th>
+        <th>credit_redeemed</th>
+        <th>mode_of_payment</th>
+        <th>transaction_id</th>
+        <th>deposit_to</th>
+        <th>due_pending</th>
+        <th>invoices</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let item of [].constructor(CustId.receipts.length);
+          let i = index
+        "
+      >
+        <td>{{ CustId.receipts[i].receipt_no }}</td>
+        <td>{{ CustId.receipts[i].amount_received }}</td>
+        <td>{{ CustId.receipts[i].mode_of_payment }}</td>
+        <td>{{ CustId.receipts[i].transaction_id }}</td>
+        <td>{{ CustId.receipts[i].deposit_to }}</td>
+        <td>{{ CustId.receipts[i].credit_redeemed }}</td>
+        <td>{{ CustId.receipts[i].due_pending }}</td>
+        <td>
+          <table>
+            <thead>
+              <tr>
+                <th>invoice_no</th>
+                <th>date</th>
+                <th>invoice_amount</th>
+                <th>actual_due</th>
+                <th>amount_received</th>
+                <th>balance</th>
+                <th>payment_status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let item1 of [].constructor(CustId.receipts.length);
+                  let j = index
+                "
+              >
+                <td>{{ CustId.receipts[i].invoices[j].invoice_no }}</td>
+                <td>{{ CustId.receipts[i].invoices[j].date }}</td>
+                <td>{{ CustId.receipts[i].invoices[j].invoice_amount }}</td>
+                <td>{{ CustId.receipts[i].invoices[j].actual_due }}</td>
+                <td>{{ CustId.receipts[i].invoices[j].amount_received }}</td>
+                <td>{{ CustId.receipts[i].invoices[j].balance }}</td>
+                <td>{{ CustId.receipts[i].invoices[j].payment_status }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
