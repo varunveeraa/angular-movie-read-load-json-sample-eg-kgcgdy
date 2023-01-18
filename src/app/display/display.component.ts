@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactService } from '../contacts.service';
+import { MatTableModule } from '@angular/material/table';
 import * as _ from 'lodash';
 import * as cloneDeep from 'lodash';
 
@@ -20,8 +21,6 @@ export class DisplayComponent implements OnInit {
 
   searchInvoice: string;
 
-  totalRcvdAmt: number;
-
   CustId: any;
 
   CustIdc: any;
@@ -32,7 +31,7 @@ export class DisplayComponent implements OnInit {
 
   showContent: any;
 
-  isShowDiv = false;  
+  isShowDiv = false;
 
   constructor(private myService: ContactService) {}
 
@@ -59,46 +58,76 @@ export class DisplayComponent implements OnInit {
     this.isShowDivIf = !this.isShowDivIf;
   }
 
-  toggleDisplayDiv() {  
-    this.isShowDiv = !this.isShowDiv;  
-  }  
+  toggleDisplayDiv() {
+    this.isShowDiv = !this.isShowDiv;
+  }
 
   ///////////////////////////////////////////////////////////////////////
 
   updateCredApply() {
-    this.totalRcvdAmt = this.credVal + this.amountReceived;
+    this.amountReceived += this.credVal;
   }
 
   ///////////////////////////////////////////////////////////////////////
 
   changeBal(i) {
     if (
-      this.CustIdc.invoices[i].amount_received >
+      this.CustIdc.invoices[i].amount_received <=
       this.CustIdc.invoices[i].actual_due
     ) {
-      alert('enter valid amount');
-      this.CustIdc.invoices[i].amount_received = 0;
-    } else if (this.amountReceived === 0) {
-      alert('enter amount received');
-      this.CustIdc.invoices[i].amount_received = 0;
-    }
-    // else if (this.findSum(false) > this.CustIdc.invoices[i].amount_received) {
-    //   alert('insufficent funds');
-    //   this.CustIdc.invoices[i].amount_received = 0;
-    // }
-    else {
-      this.CustIdc.invoices[i].balance -=
-        this.CustIdc.invoices[i].amount_received;
-      if (this.CustIdc.invoices[i].balance === 0) {
-        this.CustIdc.invoices[i].payment_status = 'complete';
-      } else if (
-        this.CustIdc.invoices[i].balance > 0 &&
-        this.CustIdc.invoices[i].balance != 0
-      ) {
-        this.CustIdc.invoices[i].payment_status = 'partially complete';
+      if (this.amountReceived != 0) {
+        if (this.findSum(false) <= this.amountReceived) {
+          this.CustIdc.invoices[i].balance =
+            this.CustIdc.invoices[i].actual_due -
+            this.CustIdc.invoices[i].amount_received;
+          if (this.CustIdc.invoices[i].balance === 0) {
+            this.CustIdc.invoices[i].payment_status = 'complete';
+          } else if (
+            this.CustIdc.invoices[i].balance > 0 &&
+            this.CustIdc.invoices[i].balance != 0
+          ) {
+            this.CustIdc.invoices[i].payment_status = 'partially complete';
+          }
+        } else {
+          alert('insufficient funds!');
+          this.CustIdc.invoices[i].amount_received = 0;
+        }
+      } else {
+        alert('enter valid number!');
+        this.CustIdc.invoices[i].amount_received = 0;
       }
+    } else {
+      alert('dont enter value more than required!');
+      this.CustIdc.invoices[i].amount_received = 0;
     }
   }
+
+  //   if (
+  //     this.CustIdc.invoices[i].amount_received >
+  //     this.CustIdc.invoices[i].actual_due
+  //   ) {
+  //     alert('enter valid amount');
+  //     this.CustIdc.invoices[i].amount_received = 0;
+  //   } else if (this.amountReceived === 0) {
+  //     alert('enter amount received');
+  //     this.CustIdc.invoices[i].amount_received = 0;
+  //   }
+  //   // else if (this.findSum(false) > this.CustIdc.invoices[i].amount_received) {
+  //   //   alert('insufficent funds');
+  //   //   this.CustIdc.invoices[i].amount_received = 0;
+  //   // }
+  //   else {
+  //     this.CustIdc.invoices[i].balance -= this.CustIdc.invoices[i].amount_received;
+  //     if (this.CustIdc.invoices[i].balance === 0) {
+  //       this.CustIdc.invoices[i].payment_status = 'complete';
+  //     } else if (
+  //       this.CustIdc.invoices[i].balance > 0 &&
+  //       this.CustIdc.invoices[i].balance != 0
+  //     ) {
+  //       this.CustIdc.invoices[i].payment_status = 'partially complete';
+  //     }
+  //   }
+  // }
 
   ///////////////////////////////////////////////////////////////////////
 

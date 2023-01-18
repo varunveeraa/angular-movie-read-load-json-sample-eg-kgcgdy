@@ -10,7 +10,6 @@ import { ContactService } from './contacts.service';
 import { MaterialsModule } from './material';
 import { ListComponent } from './list/list.component';
 import { DisplayComponent } from './display/display.component';
-import { ShowDataComponent } from './show-data/show-data.component';
 
 @NgModule({
   imports: [
@@ -24,8 +23,7 @@ import { ShowDataComponent } from './show-data/show-data.component';
     AppComponent,
     HelloComponent,
     ListComponent,
-    DisplayComponent,
-    ShowDataComponent,
+    DisplayComponent
   ],
   bootstrap: [AppComponent],
   providers: [ContactService],

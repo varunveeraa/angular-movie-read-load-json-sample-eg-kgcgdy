@@ -1,5 +1,5 @@
 <div class="main-div">
-  <h3>details fill</h3>
+  <h4>Fill the following details</h4>
 
   <p>{{ CustId.customer_name }}</p>
 
@@ -36,16 +36,6 @@
     </div>
 
     <div>
-      <label for="receipt_no"> Receipt No </label>
-      <input
-        id="receipt_no"
-        type="number"
-        value="{{ CustId.invoices.length + 209 }}"
-        readonly
-      />
-    </div>
-
-    <div>
       <label for="receipt_no"> Include Credits? </label>
 
       <button (click)="toggleDisplayDivIf()">✔️</button>
@@ -57,6 +47,16 @@
           type="number"
         />
       </div>
+    </div>
+
+    <div>
+      <label for="receipt_no"> Receipt No </label>
+      <input
+        id="receipt_no"
+        type="number"
+        value="{{ CustId.invoices.length + 209 }}"
+        readonly
+      />
     </div>
 
     <label for="mode_of_payment">Mode of Payment</label>
@@ -100,7 +100,7 @@
 
   <!-- <input [(ngModel)]="searchInvoice" placeholder="search here"> -->
 
-  <table class="table table-striped" >
+  <table class="table table-bordered border-primary">
     <thead>
       <tr>
         <th></th>
@@ -145,16 +145,88 @@
     </tbody>
   </table>
 
-  <p>amount received: {{ totalRcvdAmt }}</p>
+  <p>amount received: {{ amountReceived }}</p>
   <p>amount applicable: {{ CustIdc.amount_receivable }}</p>
   <p>amount applied: {{ findSum(false) }}</p>
   <p>total due pending: {{ findSum(true) }}</p>
   <p>credits: {{ CustIdc.credits }}</p>
   <p>credit redeem: {{ credVal }}</p>
-  <p>{{ CustIdc.invoices[1].amount_received }}</p>
-  <p>{{ CustId.invoices[1].amount_received }}</p>
   <button (click)="saveData()">Save</button>
+  <p
+    *ngIf="
+      CustIdc.invoices[1].amount_received == CustId.invoices[1].amount_received
+    "
+  >
+    Saved!
+  </p>
 </div>
 
-<button (click)="toggleDisplayDiv()">Toggle display Div</button>
-<app-show-data [hidden]="isShowDiv"></app-show-data>
+<div>
+  <table
+    class="table table-bordered border-primary"
+    border="1"
+    bordercolor="black"
+  >
+    <thead>
+      <tr>
+        <th>Receipt No</th>
+        <th>Amount Received</th>
+        <th>Credit Redeemed</th>
+        <th>Mode of Payment</th>
+        <th>Transaction Id</th>
+        <th>Deposit To</th>
+        <th>Due Pending</th>
+        <th>Invoices</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let item of [].constructor(CustId.receipts.length);
+          let i = index
+        "
+      >
+        <td>{{ CustId.receipts[i].receipt_no }}</td>
+        <td>{{ CustId.receipts[i].amount_received }}</td>
+        <td>{{ CustId.receipts[i].credit_redeemed }}</td>
+        <td>{{ CustId.receipts[i].mode_of_payment }}</td>
+        <td>{{ CustId.receipts[i].transaction_id }}</td>
+        <td>{{ CustId.receipts[i].deposit_to }}</td>
+        <td>{{ CustId.receipts[i].due_pending }}</td>
+        <td>
+          <table border="1" bordercolor="red">
+            <thead>
+              <tr>
+                <th>invoice_no</th>
+                <th>date</th>
+                <th>invoice_amount</th>
+                <th>actual_due</th>
+                <th>amount_received</th>
+                <th>balance</th>
+                <th>payment_status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let item1 of [].constructor(
+                    CustId.receipts[i].invoices.length
+                  );
+                  let j = index
+                "
+              >
+                <td>{{ CustId.receipts[i].invoices[j].invoice_no }}</td>
+                <td>{{ CustId.receipts[i].invoices[j].date }}</td>
+                <td>{{ CustId.receipts[i].invoices[j].invoice_amount }}</td>
+                <td>{{ CustId.receipts[i].invoices[j].actual_due }}</td>
+                <td>{{ CustId.receipts[i].invoices[j].amount_received }}</td>
+                <td>{{ CustId.receipts[i].invoices[j].balance }}</td>
+                <td>{{ CustId.receipts[i].invoices[j].payment_status }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
