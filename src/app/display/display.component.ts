@@ -49,9 +49,9 @@ export class DisplayComponent implements OnInit {
 
   ///////////////////////////////////////////////////////////////////////
 
-  lilnigga() {
-    console.log(_.isEqual(this.CustIdc, this.CustId));
-  }
+  // lilnigga() {
+  //   console.log(_.isEqual(this.CustIdc, this.CustId));
+  // }
 
   ///////////////////////////////////////////////////////////////////////
 
