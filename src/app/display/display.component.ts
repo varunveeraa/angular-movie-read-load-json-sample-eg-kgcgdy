@@ -15,18 +15,19 @@ export class DisplayComponent implements OnInit {
 
   public contacts: any;
 
-  amountReceived: number = 0;
-  received_date: string;
-  mode_of_payment: string;
-  deposit_to: string;
-  transaction_id: number;
+  amountReceived: number = null;
+  received_date: string = '';
+  mode_of_payment: string = '';
+  deposit_to: string = '';
+  transaction_id: number = null;
 
-  searchInvoice: string;
+  searchInvoice: string = '';
 
   isShowDivIf = false;
   isShowDiv = false;
+  isShowDiv1 = false;
 
-  credVal: number = 0;
+  credVal: number = null;
 
   constructor(private myService: ContactService) {}
 
@@ -38,6 +39,7 @@ export class DisplayComponent implements OnInit {
       // this.CustIdc = { ...this.CustId };
       // this.CustIdc = cloneDeep(this.CustId);
       this.CustIdc = JSON.parse(JSON.stringify(this.CustId));
+      this.isShowDiv1 = true;
     });
   }
 
@@ -47,7 +49,7 @@ export class DisplayComponent implements OnInit {
     this.isShowDivIf = !this.isShowDivIf;
   }
 
-  // toggleDisplayDiv() {
+  // toggleDispla() {
   //   this.isShowDiv = !this.isShowDiv;
   // }
 
@@ -96,7 +98,7 @@ export class DisplayComponent implements OnInit {
       this.CustIdc.invoices[i].amount_received <=
       this.CustIdc.invoices[i].actual_due
     ) {
-      if (this.amountReceived != 0) {
+      if (this.amountReceived != null) {
         if (this.findSum(false) <= this.amountReceived) {
           this.CustIdc.invoices[i].balance =
             this.CustIdc.invoices[i].actual_due -
@@ -137,7 +139,7 @@ export class DisplayComponent implements OnInit {
           amount_received: this.CustIdc.invoices[i].amount_received,
           balance: this.CustIdc.invoices[i].balance,
           payment_status: this.CustIdc.invoices[i].payment_status,
-          date: this.CustIdc.invoices[i].date
+          date: this.CustIdc.invoices[i].date,
         });
       }
     }
@@ -147,26 +149,34 @@ export class DisplayComponent implements OnInit {
   ///////////////////////////////////////////////////////////////////////
 
   saveData() {
-    if (this.amountReceived != 0) {
+    if (this.amountReceived != null) {
       if (this.mode_of_payment != '') {
         if (this.deposit_to != '') {
-          if (this.transaction_id != 0) {
-            this.CustId = { ...this.CustIdc };
-            let arr = {
-              receipt_no: this.CustId.invoices.length + 209,
-              amount_received: this.amountReceived,
-              mode_of_payment: this.mode_of_payment,
-              transaction_id: this.transaction_id,
-              deposit_to: this.deposit_to,
-              credit_redeemed: this.credVal,
-              due_pending: this.findSum(true),
-              invoices: this.getChecked()
-            };
-            this.CustId.receipts.push(arr);
-            console.log(this.CustId.receipts);
-            this.isShowDiv = true;
+          if (this.received_date != '') {
+            if (this.transaction_id != null) {
+              if (this.findSum(false) != 0) {
+                this.CustId = { ...this.CustIdc };
+                let arr = {
+                  receipt_no: this.CustId.invoices.length + 209,
+                  amount_received: this.amountReceived,
+                  mode_of_payment: this.mode_of_payment,
+                  transaction_id: this.transaction_id,
+                  deposit_to: this.deposit_to,
+                  credit_redeemed: this.credVal,
+                  due_pending: this.findSum(true),
+                  invoices: this.getChecked(),
+                };
+                this.CustId.receipts.push(arr);
+                console.log(this.CustId.receipts);
+                this.isShowDiv = true;
+              } else {
+                alert('select invoices');
+              }
+            } else {
+              alert('enter transaction id');
+            }
           } else {
-            alert('enter transaction id');
+            alert('enter transaction date');
           }
         } else {
           alert('enter deposit to');

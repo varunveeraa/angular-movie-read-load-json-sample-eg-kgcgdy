@@ -41,7 +41,7 @@
         <label for="receipt_no"> Include Credits? </label>
 
         <button (click)="toggleDisplayDivIf()">✔️</button>
-        <div *ngIf="!isShowDivIf">
+        <div *ngIf="isShowDivIf">
           <input
             [(ngModel)]="credVal"
             (change)="updateCredApply()"
@@ -156,79 +156,79 @@
     <p>Total Due Pending: {{ findSum(true) }}</p>
     <p>Credit Balance: {{ CustIdc.credits }}</p>
   </div>
+  <button (click)="saveData()" style="margin-right: -525%">Save</button>
   <div>
-    <button (click)="saveData()">Save</button>
-    <p *ngIf="isShowDiv">Saved!</p>
-  </div>
-
-  <div>
-    <table
-      class="table table-bordered border-primary"
-      border="1"
-      bordercolor="black"
-      id="table2"
-    >
-      <thead>
-        <tr>
-          <th>Receipt No</th>
-          <th>Amount Received</th>
-          <th>Credit Redeemed</th>
-          <th>Mode of Payment</th>
-          <th>Transaction Id</th>
-          <th>Deposit To</th>
-          <th>Due Pending</th>
-          <th style="width:50%">Invoices</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="
-            let item of [].constructor(CustId.receipts.length);
-            let i = index
-          "
-        >
-          <td>{{ CustId.receipts[i].receipt_no }}</td>
-          <td>{{ CustId.receipts[i].amount_received }}</td>
-          <td>{{ CustId.receipts[i].credit_redeemed }}</td>
-          <td>{{ CustId.receipts[i].mode_of_payment }}</td>
-          <td>{{ CustId.receipts[i].transaction_id }}</td>
-          <td>{{ CustId.receipts[i].deposit_to }}</td>
-          <td>{{ CustId.receipts[i].due_pending }}</td>
-          <td>
-            <table border="1" bordercolor="red">
-              <thead>
-                <tr>
-                  <th>invoice_no</th>
-                  <th>date</th>
-                  <th>invoice_amount</th>
-                  <th>actual_due</th>
-                  <th>amount_received</th>
-                  <th>balance</th>
-                  <th>payment_status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  *ngFor="
-                    let item1 of [].constructor(
-                      CustId.receipts[i].invoices.length
-                    );
-                    let j = index
-                  "
-                >
-                  <td>{{ CustId.receipts[i].invoices[j].invoice_no }}</td>
-                  <td>{{ CustId.receipts[i].invoices[j].date }}</td>
-                  <td>{{ CustId.receipts[i].invoices[j].invoice_amount }}</td>
-                  <td>{{ CustId.receipts[i].invoices[j].actual_due }}</td>
-                  <td>{{ CustId.receipts[i].invoices[j].amount_received }}</td>
-                  <td>{{ CustId.receipts[i].invoices[j].balance }}</td>
-                  <td>{{ CustId.receipts[i].invoices[j].payment_status }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div *ngIf="isShowDiv">
+      <table
+        class="table table-bordered border-primary"
+        border="1"
+        bordercolor="black"
+        id="table2"
+      >
+        <thead>
+          <tr>
+            <th>Receipt No</th>
+            <th>Amount Received</th>
+            <th>Credit Redeemed</th>
+            <th>Mode of Payment</th>
+            <th>Transaction Id</th>
+            <th>Deposit To</th>
+            <th>Due Pending</th>
+            <th style="width:50%">Invoices</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of [].constructor(CustId.receipts.length);
+              let i = index
+            "
+          >
+            <td>{{ CustId.receipts[i].receipt_no }}</td>
+            <td>{{ CustId.receipts[i].amount_received }}</td>
+            <td>{{ CustId.receipts[i].credit_redeemed }}</td>
+            <td>{{ CustId.receipts[i].mode_of_payment }}</td>
+            <td>{{ CustId.receipts[i].transaction_id }}</td>
+            <td>{{ CustId.receipts[i].deposit_to }}</td>
+            <td>{{ CustId.receipts[i].due_pending }}</td>
+            <td>
+              <table border="1" bordercolor="red">
+                <thead>
+                  <tr>
+                    <th>invoice_no</th>
+                    <th>date</th>
+                    <th>invoice_amount</th>
+                    <th>actual_due</th>
+                    <th>amount_received</th>
+                    <th>balance</th>
+                    <th>payment_status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let item1 of [].constructor(
+                        CustId.receipts[i].invoices.length
+                      );
+                      let j = index
+                    "
+                  >
+                    <td>{{ CustId.receipts[i].invoices[j].invoice_no }}</td>
+                    <td>{{ CustId.receipts[i].invoices[j].date }}</td>
+                    <td>{{ CustId.receipts[i].invoices[j].invoice_amount }}</td>
+                    <td>{{ CustId.receipts[i].invoices[j].actual_due }}</td>
+                    <td>
+                      {{ CustId.receipts[i].invoices[j].amount_received }}
+                    </td>
+                    <td>{{ CustId.receipts[i].invoices[j].balance }}</td>
+                    <td>{{ CustId.receipts[i].invoices[j].payment_status }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
