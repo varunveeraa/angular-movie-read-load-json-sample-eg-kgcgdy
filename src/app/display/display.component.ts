@@ -10,28 +10,23 @@ import * as cloneDeep from 'lodash';
   styleUrls: ['./display.component.css'],
 })
 export class DisplayComponent implements OnInit {
-  received_date: any;
-  mode_of_payment: any;
-  deposit_to: string;
-  transaction_id: number;
+  CustId: any;
+  CustIdc: any;
 
   public contacts: any;
 
   amountReceived: number = 0;
+  received_date: string;
+  mode_of_payment: string;
+  deposit_to: string;
+  transaction_id: number;
 
   searchInvoice: string;
 
-  CustId: any;
-
-  CustIdc: any;
-
   isShowDivIf = false;
+  isShowDiv = false;
 
   credVal: number = 0;
-
-  showContent: any;
-
-  isShowDiv = false;
 
   constructor(private myService: ContactService) {}
 
@@ -48,24 +43,50 @@ export class DisplayComponent implements OnInit {
 
   ///////////////////////////////////////////////////////////////////////
 
-  // lilnigga() {
-  //   console.log(_.isEqual(this.CustIdc, this.CustId));
-  // }
-
-  ///////////////////////////////////////////////////////////////////////
-
   toggleDisplayDivIf() {
     this.isShowDivIf = !this.isShowDivIf;
   }
 
-  toggleDisplayDiv() {
-    this.isShowDiv = !this.isShowDiv;
-  }
+  // toggleDisplayDiv() {
+  //   this.isShowDiv = !this.isShowDiv;
+  // }
 
   ///////////////////////////////////////////////////////////////////////
 
   updateCredApply() {
-    this.amountReceived += this.credVal;
+    if (this.credVal > this.CustIdc.credits) {
+      alert('insufficient credits');
+      this.credVal = 0;
+    } else {
+      this.amountReceived += this.credVal;
+      this.CustIdc.credits -= this.credVal;
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////
+
+  checkAmt() {
+    if (this.amountReceived > this.CustIdc.amount_receivable) {
+      this.CustIdc.credits +=
+        this.amountReceived - this.CustIdc.amount_receivable;
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////
+
+  findSum(i) {
+    let sum = 0;
+    if (i == true) {
+      for (let x = 0; x < this.CustIdc.invoices.length; x++) {
+        sum += this.CustIdc.invoices[x].balance;
+      }
+      return sum;
+    } else {
+      for (let x = 0; x < this.CustIdc.invoices.length; x++) {
+        sum += this.CustIdc.invoices[x].amount_received;
+      }
+      return sum;
+    }
   }
 
   ///////////////////////////////////////////////////////////////////////
@@ -93,65 +114,12 @@ export class DisplayComponent implements OnInit {
           this.CustIdc.invoices[i].amount_received = 0;
         }
       } else {
-        alert('enter valid number!');
+        alert('enter received amount!');
         this.CustIdc.invoices[i].amount_received = 0;
       }
     } else {
       alert('dont enter value more than required!');
       this.CustIdc.invoices[i].amount_received = 0;
-    }
-  }
-
-  //   if (
-  //     this.CustIdc.invoices[i].amount_received >
-  //     this.CustIdc.invoices[i].actual_due
-  //   ) {
-  //     alert('enter valid amount');
-  //     this.CustIdc.invoices[i].amount_received = 0;
-  //   } else if (this.amountReceived === 0) {
-  //     alert('enter amount received');
-  //     this.CustIdc.invoices[i].amount_received = 0;
-  //   }
-  //   // else if (this.findSum(false) > this.CustIdc.invoices[i].amount_received) {
-  //   //   alert('insufficent funds');
-  //   //   this.CustIdc.invoices[i].amount_received = 0;
-  //   // }
-  //   else {
-  //     this.CustIdc.invoices[i].balance -= this.CustIdc.invoices[i].amount_received;
-  //     if (this.CustIdc.invoices[i].balance === 0) {
-  //       this.CustIdc.invoices[i].payment_status = 'complete';
-  //     } else if (
-  //       this.CustIdc.invoices[i].balance > 0 &&
-  //       this.CustIdc.invoices[i].balance != 0
-  //     ) {
-  //       this.CustIdc.invoices[i].payment_status = 'partially complete';
-  //     }
-  //   }
-  // }
-
-  ///////////////////////////////////////////////////////////////////////
-
-  findSum(i) {
-    let sum = 0;
-    if (i == true) {
-      for (let x = 0; x < this.CustIdc.invoices.length; x++) {
-        sum += this.CustIdc.invoices[x].balance;
-      }
-      return sum;
-    } else {
-      for (let x = 0; x < this.CustIdc.invoices.length; x++) {
-        sum += this.CustIdc.invoices[x].amount_received;
-      }
-      return sum;
-    }
-  }
-
-  ///////////////////////////////////////////////////////////////////////
-
-  checkAmt() {
-    if (this.amountReceived > this.CustIdc.amount_receivable) {
-      this.CustIdc.credits +=
-        this.amountReceived - this.CustIdc.amount_receivable;
     }
   }
 
@@ -169,6 +137,7 @@ export class DisplayComponent implements OnInit {
           amount_received: this.CustIdc.invoices[i].amount_received,
           balance: this.CustIdc.invoices[i].balance,
           payment_status: this.CustIdc.invoices[i].payment_status,
+          date: this.CustIdc.invoices[i].date
         });
       }
     }
@@ -178,18 +147,35 @@ export class DisplayComponent implements OnInit {
   ///////////////////////////////////////////////////////////////////////
 
   saveData() {
-    this.CustId = { ...this.CustIdc };
-    let arr = {
-      receipt_no: this.CustId.invoices.length + 209,
-      amount_received: this.amountReceived,
-      mode_of_payment: this.mode_of_payment,
-      transaction_id: this.transaction_id,
-      deposit_to: this.deposit_to,
-      credit_redeemed: this.credVal,
-      due_pending: this.findSum(true),
-      invoices: this.getChecked(),
-    };
-    this.CustId.receipts.push(arr);
-    console.log(this.CustId.receipts);
+    if (this.amountReceived != 0) {
+      if (this.mode_of_payment != '') {
+        if (this.deposit_to != '') {
+          if (this.transaction_id != 0) {
+            this.CustId = { ...this.CustIdc };
+            let arr = {
+              receipt_no: this.CustId.invoices.length + 209,
+              amount_received: this.amountReceived,
+              mode_of_payment: this.mode_of_payment,
+              transaction_id: this.transaction_id,
+              deposit_to: this.deposit_to,
+              credit_redeemed: this.credVal,
+              due_pending: this.findSum(true),
+              invoices: this.getChecked()
+            };
+            this.CustId.receipts.push(arr);
+            console.log(this.CustId.receipts);
+            this.isShowDiv = true;
+          } else {
+            alert('enter transaction id');
+          }
+        } else {
+          alert('enter deposit to');
+        }
+      } else {
+        alert('enter mode of payment');
+      }
+    } else {
+      alert('enter received amount');
+    }
   }
 }
