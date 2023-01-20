@@ -21,7 +21,8 @@ export class DisplayComponent implements OnInit {
   deposit_to: string = '';
   transaction_id: number = null;
 
-  searchInvoice: string = '';
+  // searchInvoice: string = '';
+  // searchParams = { invoice: '' };
 
   isShowDivIf = false;
   isShowDiv = false;
@@ -78,6 +79,13 @@ export class DisplayComponent implements OnInit {
       this.CustIdc.credits -= this.credVal;
     }
   }
+
+  ///////////////////////////////////////////////////////////////////////
+
+  // search() {
+  //   let filter = { invoice: this.searchInvoice.trim() };
+  //   this.searchParams = filter;
+  // }
 
   ///////////////////////////////////////////////////////////////////////
 
@@ -174,6 +182,7 @@ export class DisplayComponent implements OnInit {
             if (this.transaction_id != null) {
               if (this.findSum(false) != 0) {
                 this.CustId = { ...this.CustIdc };
+                this.CustId.amount_receivable = this.findSum(true);
                 let arr = {
                   receipt_no: this.CustId.invoices.length + 209,
                   amount_received: this.amountReceived,
@@ -187,6 +196,8 @@ export class DisplayComponent implements OnInit {
                 this.CustId.receipts.push(arr);
                 console.log(this.CustId.receipts);
                 this.isShowDiv = true;
+                this.CustIdc = { ...this.CustId };
+                this.revertForm();
               } else {
                 alert('select invoices');
               }

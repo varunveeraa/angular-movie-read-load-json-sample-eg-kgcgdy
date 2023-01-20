@@ -47,7 +47,7 @@
             (change)="updateCredApply()"
             name="updateCred"
             type="number"
-            placeholder="credVal"
+            [placeholder]="CustIdc.credits"
           />
         </div>
       </div>
@@ -102,7 +102,13 @@
   <br />
   <br />
 
-  <!-- <input [(ngModel)]="searchInvoice" placeholder="search here"> -->
+  <input
+    [(ngModel)]="searchInvoice"
+    ng-keyup="search()"
+    placeholder="search here"
+  />
+
+  <!-- <input type="text" id="searchBox" onkeyup="searchFunc()"> -->
 
   <table class="table table-bordered border-primary" id="table1">
     <thead>
@@ -119,11 +125,9 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="
-          let item of [].constructor(CustIdc.invoices.length);
-          let i = index
-        "
+        *ngFor="let item of [].constructor(CustIdc.invoices.length); index as i"
       >
+        <!-- | searchAllColumnPipe: searchParams -->
         <td>
           <input
             type="checkbox"

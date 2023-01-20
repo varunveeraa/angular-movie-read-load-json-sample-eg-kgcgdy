@@ -10,6 +10,7 @@ import { ContactService } from './contacts.service';
 import { MaterialsModule } from './material';
 import { ListComponent } from './list/list.component';
 import { DisplayComponent } from './display/display.component';
+import { SearchAllColumnPipe } from './search.column';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { DisplayComponent } from './display/display.component';
     AppComponent,
     HelloComponent,
     ListComponent,
-    DisplayComponent
+    DisplayComponent,
+    SearchAllColumnPipe,
   ],
   bootstrap: [AppComponent],
   providers: [ContactService],
