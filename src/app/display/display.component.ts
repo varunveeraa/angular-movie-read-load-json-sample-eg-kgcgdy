@@ -58,6 +58,13 @@ export class DisplayComponent implements OnInit {
 
   revertForm() {
     this.CustIdc = this.CustId;
+    this.amountReceived = null;
+    this.received_date = '';
+    this.mode_of_payment = '';
+    this.deposit_to = '';
+    this.transaction_id = null;
+    this.credVal = null;
+    this.totalAmt = 0;
   }
 
   ///////////////////////////////////////////////////////////////////////

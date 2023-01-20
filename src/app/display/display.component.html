@@ -157,8 +157,10 @@
     <p>Total Due Pending: {{ findSum(true) }}</p>
     <p>Credit Balance: {{ CustIdc.credits }}</p>
   </div>
-  <button (click)="saveData()" style="margin-right: -525%">Save</button>
-  <button (click)="revertForm()" style="margin-right: -525%">Revert</button>
+  <div>
+    <button (click)="revertForm()">Revert</button>
+    <button (click)="saveData()" style="margin-right: -525%">Save</button>
+  </div>
   <div>
     <div *ngIf="isShowDiv">
       <table
