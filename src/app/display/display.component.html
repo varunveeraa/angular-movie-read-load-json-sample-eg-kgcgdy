@@ -127,29 +127,33 @@
       <tr
         *ngFor="let item of [].constructor(CustIdc.invoices.length); index as i"
       >
-        <!-- | searchAllColumnPipe: searchParams -->
-        <td>
-          <input
-            type="checkbox"
-            [checked]="CustIdc.invoices[i].amount_received != 0"
-          />
-        </td>
-        <td>{{ CustIdc.invoices[i].invoice_no }}</td>
-        <td>{{ CustIdc.invoices[i].date }}</td>
-        <td>{{ CustIdc.invoices[i].invoice_amount }}</td>
-        <td>{{ CustIdc.invoices[i].actual_due }}</td>
-        <td>
-          <input
-            class="inputBox"
-            type="number"
-            [(ngModel)]="CustIdc.invoices[i].amount_received"
-            (change)="changeBal(i)"
-          />
-        </td>
-        <td>
-          <p>{{ CustIdc.invoices[i].balance }}</p>
-        </td>
-        <td>{{ CustIdc.invoices[i].payment_status }}</td>
+        <ng-container
+          *ngIf="this.CustIdc.invoices[i].balance != 0 && !this.upTbl"
+        >
+          <!-- | searchAllColumnPipe: searchParams -->
+          <td>
+            <input
+              type="checkbox"
+              [checked]="CustIdc.invoices[i].amount_received != 0"
+            />
+          </td>
+          <td>{{ CustIdc.invoices[i].invoice_no }}</td>
+          <td>{{ CustIdc.invoices[i].date }}</td>
+          <td>{{ CustIdc.invoices[i].invoice_amount }}</td>
+          <td>{{ CustIdc.invoices[i].actual_due }}</td>
+          <td>
+            <input
+              class="inputBox"
+              type="number"
+              [(ngModel)]="CustIdc.invoices[i].amount_received"
+              (change)="changeBal(i)"
+            />
+          </td>
+          <td>
+            <p>{{ CustIdc.invoices[i].balance }}</p>
+          </td>
+          <td>{{ CustIdc.invoices[i].payment_status }}</td>
+        </ng-container>
       </tr>
     </tbody>
   </table>

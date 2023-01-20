@@ -31,6 +31,8 @@ export class DisplayComponent implements OnInit {
   credVal: number = null;
   totalAmt: number = 0;
 
+  upTbl: boolean = false;
+
   constructor(private myService: ContactService) {}
 
   ///////////////////////////////////////////////////////////////////////
@@ -51,7 +53,7 @@ export class DisplayComponent implements OnInit {
     this.isShowDivIf = !this.isShowDivIf;
   }
 
-  // toggleDispla() {
+  // toggleDisplay() {
   //   this.isShowDiv = !this.isShowDiv;
   // }
 
@@ -66,6 +68,9 @@ export class DisplayComponent implements OnInit {
     this.transaction_id = null;
     this.credVal = null;
     this.totalAmt = 0;
+    for (let i = 0; this.CustIdc.invoices.length; i++) {
+      this.CustIdc.invoices[i].amount_received = 0;
+    }
   }
 
   ///////////////////////////////////////////////////////////////////////
@@ -98,6 +103,7 @@ export class DisplayComponent implements OnInit {
         alert('credit updated');
       }
     }
+    this.upTbl = false;
   }
 
   ///////////////////////////////////////////////////////////////////////
@@ -194,8 +200,8 @@ export class DisplayComponent implements OnInit {
                   invoices: this.getChecked(),
                 };
                 this.CustId.receipts.push(arr);
-                console.log(this.CustId.receipts);
                 this.isShowDiv = true;
+                this.upTbl = true;
                 this.CustIdc = { ...this.CustId };
                 this.revertForm();
               } else {
