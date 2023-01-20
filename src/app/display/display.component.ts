@@ -28,6 +28,7 @@ export class DisplayComponent implements OnInit {
   isShowDiv1 = false;
 
   credVal: number = null;
+  totalAmt: number = 0;
 
   constructor(private myService: ContactService) {}
 
@@ -55,12 +56,18 @@ export class DisplayComponent implements OnInit {
 
   ///////////////////////////////////////////////////////////////////////
 
+  revertForm() {
+    this.CustIdc = this.CustId;
+  }
+
+  ///////////////////////////////////////////////////////////////////////
+
   updateCredApply() {
     if (this.credVal > this.CustIdc.credits) {
       alert('insufficient credits');
       this.credVal = 0;
     } else {
-      this.amountReceived += this.credVal;
+      this.totalAmt += this.credVal;
       this.CustIdc.credits -= this.credVal;
     }
   }
@@ -68,9 +75,13 @@ export class DisplayComponent implements OnInit {
   ///////////////////////////////////////////////////////////////////////
 
   checkAmt() {
+    this.totalAmt += this.amountReceived;
     if (this.amountReceived > this.CustIdc.amount_receivable) {
-      this.CustIdc.credits +=
-        this.amountReceived - this.CustIdc.amount_receivable;
+      if (confirm('add excessive to credits?')) {
+        this.CustIdc.credits +=
+          this.amountReceived - this.CustIdc.amount_receivable;
+        alert('credit updated');
+      }
     }
   }
 
@@ -99,7 +110,7 @@ export class DisplayComponent implements OnInit {
       this.CustIdc.invoices[i].actual_due
     ) {
       if (this.amountReceived != null) {
-        if (this.findSum(false) <= this.amountReceived) {
+        if (this.findSum(false) <= this.totalAmt) {
           this.CustIdc.invoices[i].balance =
             this.CustIdc.invoices[i].actual_due -
             this.CustIdc.invoices[i].amount_received;

@@ -47,6 +47,7 @@
             (change)="updateCredApply()"
             name="updateCred"
             type="number"
+            placeholder="credVal"
           />
         </div>
       </div>
@@ -151,12 +152,13 @@
 
   <div id="showCase">
     <p>Amount Applicable: {{ CustIdc.amount_receivable }}</p>
-    <p>Amount Received: {{ amountReceived }} ( + {{ credVal }} Credits)</p>
+    <p>Amount Received: {{ totalAmt }} ( + {{ credVal }} Credits)</p>
     <p>Amount Applied: {{ findSum(false) }}</p>
     <p>Total Due Pending: {{ findSum(true) }}</p>
     <p>Credit Balance: {{ CustIdc.credits }}</p>
   </div>
   <button (click)="saveData()" style="margin-right: -525%">Save</button>
+  <button (click)="revertForm()" style="margin-right: -525%">Revert</button>
   <div>
     <div *ngIf="isShowDiv">
       <table
