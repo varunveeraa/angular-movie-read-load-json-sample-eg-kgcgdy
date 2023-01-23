@@ -11,6 +11,8 @@ import { MaterialsModule } from './material';
 import { ListComponent } from './list/list.component';
 import { DisplayComponent } from './display/display.component';
 import { SearchAllColumnPipe } from './search.column';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { TableFilterPipe } from './display/table-filter.pipe';
 
 @NgModule({
   imports: [
@@ -19,6 +21,7 @@ import { SearchAllColumnPipe } from './search.column';
     HttpClientModule,
     MaterialsModule,
     BrowserAnimationsModule,
+    Ng2SearchPipeModule,
   ],
   declarations: [
     AppComponent,
@@ -26,6 +29,7 @@ import { SearchAllColumnPipe } from './search.column';
     ListComponent,
     DisplayComponent,
     SearchAllColumnPipe,
+    TableFilterPipe,
   ],
   bootstrap: [AppComponent],
   providers: [ContactService],

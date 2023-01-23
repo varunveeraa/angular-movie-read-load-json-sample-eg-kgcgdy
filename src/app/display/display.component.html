@@ -47,7 +47,7 @@
             (change)="updateCredApply()"
             name="updateCred"
             type="number"
-            [placeholder]="CustIdc.credits"
+            placeholder="balance: {{ CustIdc.credits }}"
           />
         </div>
       </div>
@@ -102,11 +102,7 @@
   <br />
   <br />
 
-  <input
-    [(ngModel)]="searchInvoice"
-    ng-keyup="search()"
-    placeholder="search here"
-  />
+  <input [(ngModel)]="searchText" placeholder="search here" />
 
   <!-- <input type="text" id="searchBox" onkeyup="searchFunc()"> -->
 
@@ -125,9 +121,12 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let item of [].constructor(CustIdc.invoices.length); index as i"
+        *ngFor="
+          let item of CustIdc.invoices | tableFilter: searchText;
+          index as i
+        "
       >
-        <ng-container *ngIf="CustIdc.invoices[i].balance != 0 && !showCol[i]">
+        <ng-container *ngIf="!showCol[i]">
           <!-- | searchAllColumnPipe: searchParams -->
           <td>
             <input

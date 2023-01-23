@@ -10,6 +10,8 @@ import * as cloneDeep from 'lodash';
   styleUrls: ['./display.component.css'],
 })
 export class DisplayComponent implements OnInit {
+  searchText: string = '';
+
   CustId: any;
   CustIdc: any;
 
@@ -34,6 +36,7 @@ export class DisplayComponent implements OnInit {
   upTbl: boolean = false;
 
   showCol: boolean[] = [];
+  showColc: boolean[] = [];
 
   constructor(private myService: ContactService) {}
 
@@ -104,6 +107,7 @@ export class DisplayComponent implements OnInit {
         this.showCol.push(false);
       }
     }
+    this.showColc = this.showCol;
   }
 
   ///////////////////////////////////////////////////////////////////////
@@ -151,7 +155,7 @@ export class DisplayComponent implements OnInit {
             this.CustIdc.invoices[i].amount_received;
           if (this.CustIdc.invoices[i].balance === 0) {
             this.CustIdc.invoices[i].payment_status = 'complete';
-            this.showCol[i] == true;
+            this.showColc[i] = true;
           } else if (
             this.CustIdc.invoices[i].balance > 0 &&
             this.CustIdc.invoices[i].balance != 0
@@ -202,6 +206,11 @@ export class DisplayComponent implements OnInit {
           if (this.received_date != '') {
             if (this.transaction_id != null) {
               if (this.findSum(false) != 0) {
+                if (this.totalAmt > this.findSum(false)) {
+                  if (confirm('apply left amount to credit?')) {
+                    this.CustIdc.credits += this.totalAmt - this.findSum(false);
+                  }
+                }
                 this.CustId = { ...this.CustIdc };
                 this.CustId.amount_receivable = this.findSum(true);
                 let arr = {
@@ -214,6 +223,7 @@ export class DisplayComponent implements OnInit {
                   due_pending: this.findSum(true),
                   invoices: this.getChecked(),
                 };
+                this.showCol = this.showColc;
                 this.CustId.receipts.push(arr);
                 this.isShowDiv = true;
                 this.upTbl = true;
