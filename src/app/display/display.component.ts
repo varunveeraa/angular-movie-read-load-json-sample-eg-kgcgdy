@@ -10,7 +10,7 @@ import * as cloneDeep from 'lodash';
   styleUrls: ['./display.component.css'],
 })
 export class DisplayComponent implements OnInit {
-  searchText: string = '';
+  searchText: number = null;
 
   CustId: any;
   CustIdc: any;
