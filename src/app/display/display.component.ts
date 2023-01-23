@@ -33,6 +33,8 @@ export class DisplayComponent implements OnInit {
 
   upTbl: boolean = false;
 
+  showCol: boolean[] = [];
+
   constructor(private myService: ContactService) {}
 
   ///////////////////////////////////////////////////////////////////////
@@ -94,6 +96,18 @@ export class DisplayComponent implements OnInit {
 
   ///////////////////////////////////////////////////////////////////////
 
+  boolArray() {
+    for (let i: number = 0; i < this.CustIdc.invoices.length; i++) {
+      if (this.CustIdc.invoices[i].balance === 0) {
+        this.showCol.push(true);
+      } else {
+        this.showCol.push(false);
+      }
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////
+
   checkAmt() {
     this.totalAmt += this.amountReceived;
     if (this.amountReceived > this.CustIdc.amount_receivable) {
@@ -137,6 +151,7 @@ export class DisplayComponent implements OnInit {
             this.CustIdc.invoices[i].amount_received;
           if (this.CustIdc.invoices[i].balance === 0) {
             this.CustIdc.invoices[i].payment_status = 'complete';
+            this.showCol[i] == true;
           } else if (
             this.CustIdc.invoices[i].balance > 0 &&
             this.CustIdc.invoices[i].balance != 0

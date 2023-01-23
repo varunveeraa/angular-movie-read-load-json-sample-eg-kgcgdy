@@ -127,9 +127,7 @@
       <tr
         *ngFor="let item of [].constructor(CustIdc.invoices.length); index as i"
       >
-        <ng-container
-          *ngIf="this.CustIdc.invoices[i].balance != 0 && !this.upTbl"
-        >
+        <ng-container *ngIf="CustIdc.invoices[i].balance != 0 && !showCol[i]">
           <!-- | searchAllColumnPipe: searchParams -->
           <td>
             <input
