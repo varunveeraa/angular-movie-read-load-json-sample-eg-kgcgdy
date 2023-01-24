@@ -128,25 +128,22 @@
       >
         <ng-container *ngIf="!showCol[i]">
           <td>
-            <input
-              type="checkbox"
-              [checked]="CustIdc.invoices[i].amount_received != 0"
-            />
+            <input type="checkbox" [checked]="item.amount_received != 0" />
           </td>
-          <td>{{ CustIdc.invoices[i].invoice_no }}</td>
-          <td>{{ CustIdc.invoices[i].date }}</td>
-          <td>{{ CustIdc.invoices[i].invoice_amount }}</td>
-          <td>{{ CustIdc.invoices[i].actual_due }}</td>
+          <td>{{ item.invoice_no }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.invoice_amount }}</td>
+          <td>{{ item.actual_due }}</td>
           <td>
             <input
               class="inputBox"
               type="number"
-              [(ngModel)]="CustIdc.invoices[i].amount_received"
+              [(ngModel)]="item.amount_received"
               (change)="changeBal(i)"
             />
           </td>
           <td>
-            <p>{{ CustIdc.invoices[i].balance }}</p>
+            <p>{{ item.balance }}</p>
           </td>
           <td>{{ CustId.invoices[i].payment_status }}</td>
         </ng-container>
