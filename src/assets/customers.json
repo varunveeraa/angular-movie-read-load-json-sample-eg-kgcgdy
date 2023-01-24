@@ -42,6 +42,7 @@
         "invoice_amount": 20,
         "actual_due": 20,
         "amount_received": 0,
+
         "balance": 20,
         "payment_status": "incomplete"
       }

@@ -15,6 +15,7 @@
     "@angular/router": "7.2.0",
     "@types/lodash": "4.14.191",
     "core-js": "2.6.1",
+    "firebase": "^9.16.0",
     "lodash": "4.17.21",
     "material": "0.3.0",
     "ng2-search-filter": "^0.5.1",

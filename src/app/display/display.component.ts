@@ -64,6 +64,15 @@ export class DisplayComponent implements OnInit {
 
   ///////////////////////////////////////////////////////////////////////
 
+  saveOnDb() {
+    const api$ = this.myService.putCustData(this.CustId);
+    api$.subscribe((x) => {
+      this.CustIdc = null;
+    });
+  }
+
+  ///////////////////////////////////////////////////////////////////////
+
   revertForm() {
     this.CustIdc = this.CustId;
     this.amountReceived = null;
@@ -223,8 +232,9 @@ export class DisplayComponent implements OnInit {
                   due_pending: this.findSum(true),
                   invoices: this.getChecked(),
                 };
-                this.showCol = this.showColc;
                 this.CustId.receipts.push(arr);
+                this.saveOnDb();
+                this.showCol = this.showColc;
                 this.isShowDiv = true;
                 this.upTbl = true;
                 this.CustIdc = { ...this.CustId };
