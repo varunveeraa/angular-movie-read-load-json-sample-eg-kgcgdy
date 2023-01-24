@@ -234,7 +234,7 @@ export class DisplayComponent implements OnInit {
                 };
                 this.CustId.receipts.push(arr);
                 this.saveOnDb();
-                this.boolArray()
+                this.boolArray();
                 this.showCol = this.showColc;
                 this.isShowDiv = true;
                 this.upTbl = true;
