@@ -11,11 +11,20 @@ export class ContactService {
   constructor(private http: HttpClient) {}
 
   public getCustomers(id: string): Promise<ICustomer> {
-    const apiUrl: string = 'http://localhost:6969/Customers';
+    const apiUrl: string = 'http://localhost:6969/Customers/';
+
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('GET', 'http://localhost:6969/Customers/', true);
+    // xhr.onreadystatechange = function () {
+    //   if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+    //     var data = JSON.parse(xhr.responseText);
+    //     console.log(data);
+    //   }
+    // };
+    // xhr.send();
 
     return this.http.get<ICustomer>(apiUrl + id).toPromise();
   }
-
   putCustData(data: any) {
     return this.http.put(
       '../../assets/customers.json/${data.customer_id}',
