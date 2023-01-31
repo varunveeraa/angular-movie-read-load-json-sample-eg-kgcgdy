@@ -15,10 +15,11 @@ export class ContactService {
 
     return this.http.get<ICustomer>(apiUrl + id).toPromise();
   }
-  putCustData(data: any) {
-    return this.http.put(
-      '../../assets/customers.json/${data.customer_id}',
-      data
-    );
-  }
 }
+
+// putCustData(data: any) {
+//   return this.http.put(
+//     '../../assets/customers.json/${data.customer_id}',
+//     data
+//   );
+// }

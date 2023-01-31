@@ -17,8 +17,8 @@ export class ListComponent implements OnInit {
   }
   public async selected(
     event: MatOptionSelectionChange,
-    id: string
+    customer: any
   ): Promise<void> {
-    this.myService.onCustomerSelect.next(id);
+    this.myService.onCustomerSelect.next(customer);
   }
 }
